@@ -19,6 +19,15 @@
     <listener-class>com.places.server.config.servlet.AppServletContextListener</listener-class>
   </listener>
 
+  <servlet>
+    <servlet-name>placeService</servlet-name>
+    <servlet-class>com.places.server.service.PlaceServiceImpl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>placeService</servlet-name>
+    <url-pattern>/api/places</url-pattern>
+  </servlet-mapping>
+
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>

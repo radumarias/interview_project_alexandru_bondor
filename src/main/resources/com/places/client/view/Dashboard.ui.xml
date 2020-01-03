@@ -4,5 +4,8 @@
     <div>
       Hello there!
     </div>
+    <br/>
+    <g:Label>Enter a city name:</g:Label>
+    <g:SuggestBox ui:field="suggestBox"/>
   </g:HTMLPanel>
 </ui:UiBinder>

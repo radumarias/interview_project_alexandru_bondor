@@ -3,3 +3,7 @@
 .clear {
   clear: both;
 }
+
+html {
+  padding: 20px;
+}

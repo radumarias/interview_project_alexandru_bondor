@@ -1,11 +1,11 @@
-package com.places.server.service.impl;
+package com.places.server.service;
 
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.places.server.entity.AbstractEntity;
 import com.places.server.repository.AppRepository;
-import com.places.server.service.AppService;
 import java.util.List;
 
-abstract class AbstractServiceImpl<T extends AbstractEntity> implements AppService<T> {
+abstract class AbstractServiceImpl<T extends AbstractEntity> extends RemoteServiceServlet implements AppService<T> {
 
   @Override
   public void save(T entity) {

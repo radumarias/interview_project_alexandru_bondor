@@ -10,8 +10,12 @@ import javax.inject.Inject;
 
 public class AppServiceLayerDecorator extends ServiceLayerDecorator {
 
-  @Inject
   private Injector injector;
+
+  @Inject
+  public AppServiceLayerDecorator(final Injector injector) {
+    this.injector = injector;
+  }
 
   @Override
   public <T extends Locator<?, ?>> T createLocator(Class<T> clazz) {
