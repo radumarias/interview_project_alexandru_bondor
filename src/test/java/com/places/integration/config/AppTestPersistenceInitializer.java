@@ -1,14 +1,14 @@
-package com.places.server.config;
+package com.places.integration.config;
 
 import com.google.inject.persist.PersistService;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
-class AppPersistenceInitializer {
+class AppTestPersistenceInitializer {
 
   @Inject
-  AppPersistenceInitializer(final PersistService persistService) {
+  AppTestPersistenceInitializer(final PersistService persistService) {
     persistService.start();
   }
 }

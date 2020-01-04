@@ -1,8 +1,9 @@
 package com.places.server.service;
 
+import com.google.inject.Singleton;
 import com.google.maps.model.AutocompletePrediction;
+import com.places.client.dto.CityDTO;
 import com.places.client.service.PlaceService;
-import com.places.server.dto.CityDTO;
 import com.places.server.entity.Place;
 import com.places.server.external.GooglePlacesApiClient;
 import com.places.server.repository.AppRepository;
@@ -11,20 +12,24 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 
+@Singleton
 public class PlaceServiceImpl extends AbstractServiceImpl<Place> implements PlaceService {
 
-  @Inject
   private PlaceRepository placeRepository;
 
-  @Inject
   private GooglePlacesApiClient googlePlacesApiClient;
 
-  @Override
-  public String getString() {
-    return "hello";
+  @Inject
+  public void setPlaceRepository(final PlaceRepository placeRepository) {
+    this.placeRepository = placeRepository;
   }
 
-  //  /@Override
+  @Inject
+  public void setGooglePlacesApiClient(final GooglePlacesApiClient googlePlacesApiClient) {
+    this.googlePlacesApiClient = googlePlacesApiClient;
+  }
+
+  @Override
   public List<CityDTO> getCities(final String query) {
     final AutocompletePrediction[] autocompletePredictions = googlePlacesApiClient.getCities(query);
 

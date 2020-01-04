@@ -1,11 +1,10 @@
 package com.places.client.service;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.rpc.RemoteService;
-import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import com.places.server.entity.Place;
+import com.places.client.dto.CityDTO;
+import java.util.List;
 
 public interface PlaceServiceAsync {
 
-  void getString(AsyncCallback<String> async);
+  void getCities(final String query, AsyncCallback<List<CityDTO>> async);
 }

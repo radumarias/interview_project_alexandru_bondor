@@ -5,9 +5,11 @@ import com.google.gson.GsonBuilder;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.google.maps.GeoApiContext;
+import com.google.maps.PlaceAutocompleteRequest.SessionToken;
 import com.google.maps.PlacesApi;
 import com.google.maps.model.AutocompletePrediction;
 import com.google.maps.model.PlaceAutocompleteType;
+import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,16 +18,22 @@ public class GooglePlacesApiClientImpl implements GooglePlacesApiClient {
   private final Logger LOGGER = LoggerFactory.getLogger(GooglePlacesApiClientImpl.class);
 
   private final GeoApiContext geoApiContext;
+  private SessionToken sessionToken;
 
   @Inject
   public GooglePlacesApiClientImpl(@Named("google.api.key") final String googleApiKey) {
-    geoApiContext = new GeoApiContext.Builder().apiKey(googleApiKey).build();
+    geoApiContext = new GeoApiContext.Builder().apiKey(googleApiKey).retryTimeout(1, TimeUnit.SECONDS).build();
+    sessionToken = new SessionToken();
   }
 
   @Override
   public AutocompletePrediction[] getCities(final String query) {
     try {
-      AutocompletePrediction[] autocompletePredictions = PlacesApi.placeAutocomplete(geoApiContext, query, null).types(PlaceAutocompleteType.CITIES).await();
+      if (query == null || query.isEmpty() || query.length() < 3) {
+        return null;
+      }
+      AutocompletePrediction[] autocompletePredictions = PlacesApi.placeAutocomplete(geoApiContext, query, sessionToken).types(PlaceAutocompleteType.CITIES)
+          .await();
       Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
       System.out.println("Found " + autocompletePredictions.length + " cities");

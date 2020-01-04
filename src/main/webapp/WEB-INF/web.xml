@@ -16,7 +16,7 @@
   </filter-mapping>
 
   <listener>
-    <listener-class>com.places.server.config.servlet.AppServletContextListener</listener-class>
+    <listener-class>com.places.server.config.AppServletContextListener</listener-class>
   </listener>
 
   <servlet>
