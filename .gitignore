@@ -27,3 +27,5 @@ www-test/
 .idea
 *.iml
 target
+
+application.properties
