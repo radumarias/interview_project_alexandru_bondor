@@ -1,8 +1,20 @@
 package com.places.integration.repository;
 
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+import com.places.server.config.AppModule;
+=======
 import com.places.integration.config.AppTestModule;
 import com.places.integration.config.GuiceTestRunner;
 import com.places.integration.config.WithModules;
+>>>>>>> Stashed changes
+import com.places.server.entity.Place;
+>>>>>>> Search for city
+import com.places.integration.config.GuiceTestRunner;
+import com.places.integration.config.WithModules;
+import com.places.server.config.AppExternalClientsModule;
+import com.places.server.config.AppModule;
 import com.places.server.entity.Place;
 import com.places.server.repository.PlaceRepository;
 import javax.inject.Inject;
@@ -11,7 +23,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(GuiceTestRunner.class)
+<<<<<<< HEAD
+@WithModules({AppModule.class, AppExternalClientsModule.class})
+=======
+<<<<<<< Updated upstream
+@WithModules({AppModule.class})
+=======
 @WithModules({AppTestModule.class})
+>>>>>>> Stashed changes
+>>>>>>> Search for city
 public class PlaceRepositoryTest {
 
   @Inject

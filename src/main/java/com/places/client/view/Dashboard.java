@@ -3,15 +3,12 @@ package com.places.client.view;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
-<<<<<<< Updated upstream
-import com.google.gwt.user.client.ui.Widget;
-=======
 import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.SuggestOracle.Suggestion;
 import com.google.gwt.user.client.ui.Widget;
 import com.places.client.components.CitySuggestOracle;
->>>>>>> Stashed changes
 
 public class Dashboard extends Composite {
 
@@ -21,11 +18,11 @@ public class Dashboard extends Composite {
 
   private static final MyUiBinder uiBinder = GWT.create(MyUiBinder.class);
 
+  @UiField(provided = true)
+  SuggestBox suggestBox;
+
   public Dashboard() {
-<<<<<<< Updated upstream
-=======
     initSuggestBox();
->>>>>>> Stashed changes
     initWidget(uiBinder.createAndBindUi(this));
   }
 
