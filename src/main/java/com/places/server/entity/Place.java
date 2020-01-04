@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "place")
+@Table(name = "places")
 public class Place extends AbstractEntity {
 
   @Column

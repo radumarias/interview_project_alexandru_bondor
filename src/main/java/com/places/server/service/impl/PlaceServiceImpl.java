@@ -1,4 +1,4 @@
-package com.places.server.service;
+package com.places.server.service.impl;
 
 import com.google.inject.Singleton;
 import com.google.maps.model.AutocompletePrediction;

@@ -2,7 +2,7 @@ package com.places.server.config;
 
 import com.google.inject.persist.PersistFilter;
 import com.google.inject.servlet.ServletModule;
-import com.places.server.service.PlaceServiceImpl;
+import com.places.server.service.impl.PlaceServiceImpl;
 
 public class AppServletModule extends ServletModule {
 

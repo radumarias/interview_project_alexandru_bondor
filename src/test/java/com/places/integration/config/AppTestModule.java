@@ -9,7 +9,7 @@ import com.places.integration.external.GooglePlacesApiClientImplMock;
 import com.places.server.external.GooglePlacesApiClient;
 import com.places.server.repository.PlaceRepository;
 import com.places.server.repository.impl.PlaceRepositoryImpl;
-import com.places.server.service.PlaceServiceImpl;
+import com.places.server.service.impl.PlaceServiceImpl;
 import java.io.IOException;
 import java.util.Properties;
 

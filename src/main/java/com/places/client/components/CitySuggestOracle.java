@@ -15,7 +15,7 @@ public class CitySuggestOracle extends SuggestOracle {
 
   private PlaceServiceAsync placeServiceAsync = GWT.create(PlaceService.class);
 
-  private static final int REQUEST_CITIES_DELAY_MS = 600;
+  private static final int REQUEST_CITIES_DELAY_MS = 500;
 
   private Request request;
   private Callback callback;
