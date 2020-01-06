@@ -1,54 +1,28 @@
-package com.places.server.entity;
+package com.places.shared.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "place")
-public class Place extends AbstractEntity {
+public class PlaceDTO extends GooglePlacesApiDTO {
 
-  @Column
-  private String name;
-  @Column
-  private String googlePlaceId;
-  @Column
+  private Long id;
   private String address;
-  @Column
   private String phoneNumber;
-  @Column
   private Double rating;
-  @Column
   private Integer ratingsCount;
-  @Column
   private String website;
-  @Column
   private Double lat;
-  @Column
   private Double lng;
-  @ElementCollection(fetch = FetchType.EAGER)
-  private List<String> photoReferences;
-  @Column
+  private List<String> photoReferences = new ArrayList<>();
   private boolean updated;
 
-  public String getName() {
-    return name;
+  public Long getId() {
+    return id;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getGooglePlaceId() {
-    return googlePlaceId;
-  }
-
-  public void setGooglePlaceId(String googlePlaceId) {
-    this.googlePlaceId = googlePlaceId;
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getAddress() {
@@ -131,12 +105,12 @@ public class Place extends AbstractEntity {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Place place = (Place) o;
-    return Objects.equals(googlePlaceId, place.googlePlaceId);
+    PlaceDTO placeDTO = (PlaceDTO) o;
+    return Objects.equals(super.getGooglePlaceId(), placeDTO.getGooglePlaceId());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(googlePlaceId);
+    return Objects.hash(super.getGooglePlaceId());
   }
 }

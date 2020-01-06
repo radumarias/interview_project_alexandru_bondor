@@ -7,9 +7,9 @@ public interface AppRepository<T extends AbstractEntity> {
 
   T save(T entity);
 
-  T findById(Long id);
+  List<T> save(List<T> entities);
 
-  List<T> findAll();
+  T findById(Long id);
 
   boolean delete(T entity);
 }
