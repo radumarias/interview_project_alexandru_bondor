@@ -148,7 +148,6 @@ public class DashboardView extends Composite {
 
         @Override
         public void onSuccess(List<String> result) {
-          GWT.log(String.join("\n", result));
           placeDetailsView.updatePhotos(result);
         }
       });

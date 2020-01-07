@@ -2,7 +2,6 @@ package com.places.server.external;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gwt.user.server.Base64Utils;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import com.google.maps.GeoApiContext;
@@ -97,7 +96,7 @@ public class GooglePlacesApiClientImpl implements GooglePlacesApiClient {
       for (String photoReference : photoReferences) {
         ImageResult imageResult = PlacesApi.photo(geoApiContext, photoReference).maxHeight(maxHeight).await();
         if (imageResult != null && imageResult.contentType != null && imageResult.contentType.length() != 0) {
-          photos.add("data:image/png;base64," + Base64Utils.toBase64(imageResult.imageData));
+          photos.add(toBase64(imageResult.imageData, imageResult.contentType));
         }
       }
       return photos;
@@ -105,5 +104,12 @@ public class GooglePlacesApiClientImpl implements GooglePlacesApiClient {
       LOGGER.warn(exception.getMessage());
     }
     return null;
+  }
+
+  private String toBase64(byte[] data, String contentType) {
+    // This is bad, but I am lazy and don't want to write _another_
+    sun.misc.BASE64Encoder enc = new sun.misc.BASE64Encoder();
+    String base64Contents = enc.encode(data).replaceAll("\\s+", "");
+    return "data:" + contentType + ";base64," + base64Contents;
   }
 }
