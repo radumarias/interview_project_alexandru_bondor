@@ -1,0 +1,11 @@
+td > input {
+  width: 300px;
+}
+
+td {
+  padding-bottom: 10px;
+}
+
+.customButton {
+ margin-right: 10px;
+}

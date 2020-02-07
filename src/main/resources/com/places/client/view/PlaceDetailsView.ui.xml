@@ -1,0 +1,26 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+  xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+  <ui:style src="placeDetailsView.css"/>
+  <g:HTMLPanel>
+    <g:VerticalPanel>
+      <g:Label>Name:</g:Label>
+      <g:TextBox ui:field="placeName"/>
+      <g:Label>Address:</g:Label>
+      <g:TextBox ui:field="placeAddress"/>
+      <g:Label>PhoneNumber:</g:Label>
+      <g:TextBox ui:field="placePhoneNumber"/>
+      <g:Label>Rating:</g:Label>
+      <g:TextBox ui:field="placeRating"/>
+      <g:Label>Ratings count:</g:Label>
+      <g:TextBox ui:field="placeRatingsCount"/>
+      <g:Label>Website:</g:Label>
+      <g:TextBox ui:field="placeWebsite"/>
+      <g:Label>Photos:</g:Label>
+      <g:ScrollPanel ui:field="photos"/>
+      <g:HorizontalPanel>
+        <g:Button ui:field="saveButton" addStyleNames="{style.customButton}">Save</g:Button>
+        <g:Button ui:field="deleteButton">Delete</g:Button>
+      </g:HorizontalPanel>
+    </g:VerticalPanel>
+  </g:HTMLPanel>
+</ui:UiBinder>

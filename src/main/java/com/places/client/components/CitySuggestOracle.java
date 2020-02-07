@@ -1,19 +1,18 @@
 package com.places.client.components;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle.MultiWordSuggestion;
 import com.google.gwt.user.client.ui.SuggestOracle;
-import com.places.client.dto.CityDTO;
-import com.places.client.service.PlaceService;
-import com.places.client.service.PlaceServiceAsync;
+import com.places.shared.service.PlaceRemoteServiceAsync;
+import com.places.shared.dto.CityDTO;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CitySuggestOracle extends SuggestOracle {
 
-  private PlaceServiceAsync placeServiceAsync = GWT.create(PlaceService.class);
+  private PlaceRemoteServiceAsync placeServiceAsync;
 
   private static final int REQUEST_CITIES_DELAY_MS = 500;
 
@@ -26,9 +25,19 @@ public class CitySuggestOracle extends SuggestOracle {
     }
   };
 
+  private List<CityDTO> latestSuggestions = new ArrayList<>();
+
+  public void setPlaceServiceAsync(PlaceRemoteServiceAsync placeServiceAsync) {
+    this.placeServiceAsync = placeServiceAsync;
+  }
+
   @Override
   public void requestSuggestions(Request request, Callback callback) {
     resetTimerCountdown(request, callback);
+  }
+
+  public List<CityDTO> getLatestSuggestions() {
+    return latestSuggestions;
   }
 
   private void resetTimerCountdown(Request request, Callback callback) {
@@ -49,12 +58,17 @@ public class CitySuggestOracle extends SuggestOracle {
 
       @Override
       public void onSuccess(List<CityDTO> cities) {
-        for (CityDTO cityDTO : cities) {
-          final MultiWordSuggestion multiWordSuggestion = new MultiWordSuggestion(cityDTO.getName(), cityDTO.getName());
-          suggestions.add(multiWordSuggestion);
+        if (cities == null || cities.isEmpty()) {
+          Window.alert("No results from Google Places API");
+        } else {
+          latestSuggestions = cities;
+          for (CityDTO cityDTO : cities) {
+            final MultiWordSuggestion multiWordSuggestion = new MultiWordSuggestion(cityDTO.getName(), cityDTO.getName());
+            suggestions.add(multiWordSuggestion);
+          }
+          Response response = new Response(suggestions);
+          callback.onSuggestionsReady(request, response);
         }
-        Response response = new Response(suggestions);
-        callback.onSuggestionsReady(request, response);
       }
     });
   }
